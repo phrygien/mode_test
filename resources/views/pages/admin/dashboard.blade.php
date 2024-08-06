@@ -5,7 +5,7 @@
         </x-slot:actions>
     </x-header>
     <div class="space-y-4">
-        <livewire:tenants.stats />
-        <livewire:tenants.department-list />
+        <livewire:admins.stats />
+        <livewire:admins.department-list />
     </div>
 </x-layouts.admin>

@@ -16,15 +16,17 @@ foreach (config('tenancy.central_domains') as $domain) {
         Route::prefix('auth')->as('auth:')->group(static function (): void {
             Route::view('register', 'pages.auth.register')->name('register');
             Route::view('login', 'pages.auth.login-client')->name('login');
-            Route::view('admin-login', 'pages.auth.login-admin')->name('admin.login');
+            Route::view('admin-login', 'pages.auth.login-admin')->name('admin-login');
         });
 
         // admin routes
-        Route::prefix('admin')->as('admin:')->group(
-            base_path(
-                path: 'routes/web/admin.php',
-            )
-        );
+        Route::middleware(['auth'])->group(static function (): void {
+            Route::prefix('admin')->as('admin:')->group(
+                base_path(
+                    path: 'routes/web/admin.php',
+                )
+            );
+        });
 
     });
 }

@@ -38,7 +38,7 @@
                 @if (auth()->check())
                     <x-menu-separator />
 
-                    <livewire:tenants.user-menu />
+                    <livewire:admins.user-menu />
 
                     <x-menu-separator />
                 @endif
@@ -46,7 +46,7 @@
                 <x-menu-item title="Tableau de bord" icon="o-sparkles" link="/admin/dashboard" />
                 <x-menu-item title="Fonctionalités" icon="o-cog-6-tooth" link="###" />
                 <x-menu-item title="Produits & catalogue" icon="o-cube-transparent" link="###" />
-                <x-menu-item title="Subscriptions" icon="o-clock" link="###" />
+                <x-menu-item title="Subscriptions" icon="o-clock" link="/admin/subscriptions" />
                 {{-- <x-menu-sub title="Produits & catalogue" icon="o-cog-6-tooth">
                     <x-menu-item title="Profile" icon="o-wifi" link="{{ route('pages:tenants:settings:profile') }}" />
                     <x-menu-item title="Tenant" icon="o-archive-box" link="####" />
@@ -63,5 +63,13 @@
     {{--  TOAST area --}}
     <x-toast />
 </body>
+<script>
+    window.addEventListener("DOMContentLoaded", () => Preline.start());
+</script>
+<script>
+    document.addEventListener("livewire:navigated", () => {
+        window.HSStaticMethods.autoInit();
+    });
+</script>
 
 </html>
