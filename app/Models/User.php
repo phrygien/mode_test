@@ -115,7 +115,7 @@ final class User extends Authenticatable
 
     public function activeAbonnement(): HasOne
     {
-        return $this->hasOne(Abonnement::class)->where('statut', 1)->where('is_active', true);
+        return $this->hasOne(Abonnement::class)->where('is_active', 1);
     }
 
     public function UserhasPermission($permission)

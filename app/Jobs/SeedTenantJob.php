@@ -37,7 +37,7 @@ class SeedTenantJob implements ShouldQueue
             User::create([
                 "name" => $this->user->name,
                 "email" => $this->user->email,
-                "password" => Hash::make($this->tenant->password),
+                "password" => Hash::make($this->tenant->name),
             ]);
         });
     }

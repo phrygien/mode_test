@@ -43,17 +43,14 @@
                     <x-menu-separator />
                 @endif
 
-                @if (!auth()->user()->tenant)
-                    <x-menu-item title="Finaliser votre setup" icon="o-adjustments-horizontal" link="/setup" />
-                @else
-                    <x-menu-item title="Accueil" icon="o-home" link="/accueil" />
-                    <x-menu-item title="Mon abonnement" icon="o-command-line" link="/my-setup" />
-                    {{-- <x-menu-sub title="Product catalogue" icon="o-cube">
-                        <x-menu-item title="Modules" icon="o-cube"
-                            link="{{ route('pages:tenants:settings:profile') }}" />
-                        <x-menu-item title="Plan" icon="o-cube" link="{{ route('pages:admin:plan') }}" />
-                    </x-menu-sub> --}}
-                @endif
+                <x-menu-item title="Tableau de bord" icon="o-sparkles" link="/admin/dashboard" />
+                <x-menu-item title="Fonctionalités" icon="o-cog-6-tooth" link="###" />
+                <x-menu-item title="Produits & catalogue" icon="o-cube-transparent" link="###" />
+                <x-menu-item title="Subscriptions" icon="o-clock" link="###" />
+                {{-- <x-menu-sub title="Produits & catalogue" icon="o-cog-6-tooth">
+                    <x-menu-item title="Profile" icon="o-wifi" link="{{ route('pages:tenants:settings:profile') }}" />
+                    <x-menu-item title="Tenant" icon="o-archive-box" link="####" />
+                </x-menu-sub> --}}
             </x-menu>
         </x-slot:sidebar>
 
@@ -66,10 +63,5 @@
     {{--  TOAST area --}}
     <x-toast />
 </body>
-<script>
-    document.addEventListener("livewire:navigated", () => {
-        window.HSStaticMethods.autoInit();
-    });
-</script>
 
 </html>

@@ -49,7 +49,7 @@ new class extends Component {
 
         $this->success('Bienvenue ' . $this->name . 'ouverture de compte avec succees');
 
-        $this->redirect(url: route('pages:dashboard'));
+        $this->redirect(url: route('pages:setup'));
     }
 }; ?>
 

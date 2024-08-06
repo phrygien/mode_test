@@ -13,11 +13,17 @@
     <livewire:styles />
 </head>
 
-<body class="h-full font-sans antialiased text-slate-900 dark:text-slate-50">
+<body class="min-h-screen font-sans antialiased">
+
 
     {{ $slot }}
 
     <livewire:scripts />
+    <script>
+        document.addEventListener("livewire:navigated", () => {
+            window.HSStaticMethods.autoInit();
+        });
+    </script>
 </body>
 
 </html>

@@ -80,6 +80,13 @@ new class extends Component {
         $this->communes = Commune::where('id_district', $district_id)->get();
     }
 
+    public function mount(): void
+    {
+        $hasTenant = Tenant::where('user_id', Auth::user()->id)->first();
+        if ($hasTenant) {
+            $this->success('Tenant created', 'You were redirected to another url ...', redirectTo: '/accueil');
+        }
+    }
     // submit demande
     public function submit()
     {

@@ -26,7 +26,7 @@ new class extends Component {
             ]);
         }
 
-        $this->redirect(url: route('pages:dashboard'));
+        $this->redirect(url: route('pages:setup'));
     }
 }; ?>
 
