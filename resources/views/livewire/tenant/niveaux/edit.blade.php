@@ -53,6 +53,13 @@ new class extends Component {
         $this->success('Mise à jour avec succès.', redirectTo: '/configurations/niveaux');
     }
 
+    // delete niveau
+    public function delete()
+    {
+        $this->niveau->delete();
+        $this->success('Suppression avec succès.', redirectTo: '/configurations/niveaux');
+    }
+
     public function with(): array
     {
         return [
@@ -63,9 +70,10 @@ new class extends Component {
 
 <div>
     <div>
-        <x-header title="Créer niveau" separator>
+        <x-header title="Niveau {{ $niveau->name }}" separator>
             <x-slot:actions>
-                <x-theme-toggle class="btn btn-circle btn-ghost" />
+                <x-button class="btn-error" label="Supprimer" icon="o-trash" wire:confirm="Vous etes sure?"
+                    wire:click="delete()" />
             </x-slot:actions>
         </x-header>
 
@@ -80,7 +88,7 @@ new class extends Component {
                         <x-input wire:model="abreviation" label="Abreviation" hint="ex: CM1,6em, TS1" />
                         <x-slot:actions>
                             <x-button label="Annuler" link="/configurations/niveaux" />
-                            <x-button label="Créer le niveau" class="btn-primary" type="submit" spinner="save"
+                            <x-button label="Mettre à jour le niveau" class="btn-primary" type="submit" spinner="save"
                                 icon="o-paper-airplane" />
                         </x-slot:actions>
                     </x-form>
