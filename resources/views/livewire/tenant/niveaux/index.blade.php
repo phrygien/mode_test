@@ -24,9 +24,9 @@ new class extends Component {
 }; ?>
 
 <div>
-    <x-header title="Classes ou niveaux">
+    <x-header title="Niveau">
         <x-slot:actions>
-            <x-button class="btn-primary" label="Creer niveau" link="/configurations/niveaux/create" />
+            <x-button class="btn-primary" label="Creer niveau" link="/configurations/niveaux/create" icon="o-plus-circle" />
         </x-slot:actions>
     </x-header>
     @if (count($niveaus) > 0)
@@ -37,7 +37,8 @@ new class extends Component {
                 @foreach ($niveaus as $niveau)
                     <!-- Card -->
                     <a class="flex flex-col transition bg-white border shadow-sm group rounded-xl hover:shadow-md focus:outline-none focus:shadow-md dark:bg-neutral-900 dark:border-neutral-800"
-                        href="{{ route('pages:tenants:configurations:niveaux.edit', ['id' => $niveau->id]) }}" wire:navigate>
+                        href="{{ route('pages:tenants:configurations:niveaux.edit', ['id' => $niveau->id]) }}"
+                        wire:navigate>
                         <div class="p-4 md:p-5">
                             <div class="flex items-center justify-between gap-x-3">
                                 <div class="grow">

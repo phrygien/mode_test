@@ -49,7 +49,6 @@ new class extends Component {
     {
         $data = $this->validate();
         $this->niveau->update($data);
-        $this->reset();
         $this->success('Mise à jour avec succès.', redirectTo: '/configurations/niveaux');
     }
 
