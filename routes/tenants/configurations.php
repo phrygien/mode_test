@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\AnneeScolaire;
+use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
 
 Route::view('annees', 'pages.tenants.annees.index')->name('annees');
@@ -15,3 +16,11 @@ Route::get('annees/{id}/edit', function (AnneeScolaire $anneescolaire, $id) {
 // gestion cycle
 Route::view('cycles', 'pages.tenants.cycles.index')->name('cycles');
 Route::view('cycles/create', 'pages.tenants.cycles.create')->name('cycles.create');
+
+// gestion niveau
+Route::view('niveaux', 'pages.tenants.niveauxs.index')->name('niveaux');
+Route::view('niveaux/create', 'pages.tenants.niveauxs.create')->name('niveaux.create');
+Route::get('niveaux/{id}/edit', function (Niveau $niveau, $id) {
+    $niveau = Niveau::find($id);
+    return view('pages.tenants.niveauxs.edit', compact('niveau'));
+})->name('niveaux.edit');

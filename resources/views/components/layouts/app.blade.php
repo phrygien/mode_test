@@ -48,8 +48,7 @@
                     <x-menu-item title="Années Scolaires" icon="o-cog-8-tooth"
                         link="{{ route('pages:tenants:configurations:annees') }}" />
                     <x-menu-item title="Cyles d'etudes" icon="o-cog-8-tooth" link="/configurations/cycles" />
-                    <x-menu-item title="Niveaux" icon="o-cog-8-tooth"
-                        link="{{ route('pages:tenants:settings:profile') }}" />
+                    <x-menu-item title="Classes" icon="o-cog-8-tooth" link="/configurations/niveaux" />
                     <x-menu-item title="Sections" icon="o-cog-8-tooth" link="####" />
                     <x-menu-item title="Trimestres/Semestres " icon="o-cog-8-tooth" link="####" />
                     <x-menu-item title="Frais d'inscriptions" icon="o-banknotes" link="####" />
