@@ -90,6 +90,8 @@ new class extends Component {
     // submit demande
     public function submit()
     {
+        ini_set('max_execution_time', 300); // Augmente à 120 secondes
+
         $this->validate();
 
         try {

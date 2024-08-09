@@ -44,12 +44,18 @@
                 @endif
 
                 <x-menu-item title="Tableaud de board" icon="o-sparkles" link="/" />
-                <x-menu-sub title="Gestion Années Scolaires" icon="o-clock">
-                    <x-menu-item title="Années Scolaires" icon="o-calendar"
-                        link="{{ route('pages:tenants:annees') }}" />
-                    <x-menu-item title="Trimestres/Semestres " icon="o-rectangle-stack" link="####" />
+                <x-menu-sub title="Configurations" icon="o-cog-8-tooth">
+                    <x-menu-item title="Années Scolaires" icon="o-cog-8-tooth"
+                        link="{{ route('pages:tenants:configurations:annees') }}" />
+                    <x-menu-item title="Cyles d'etudes" icon="o-cog-8-tooth" link="/configurations/cycles" />
+                    <x-menu-item title="Niveaux" icon="o-cog-8-tooth"
+                        link="{{ route('pages:tenants:settings:profile') }}" />
+                    <x-menu-item title="Sections" icon="o-cog-8-tooth" link="####" />
+                    <x-menu-item title="Trimestres/Semestres " icon="o-cog-8-tooth" link="####" />
+                    <x-menu-item title="Frais d'inscriptions" icon="o-banknotes" link="####" />
+                    <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
                 </x-menu-sub>
-
+                {{-- 
                 <x-menu-sub title="Gestion enseignants" icon="o-users">
                     <x-menu-item title="Enseignants" icon="o-user"
                         link="{{ route('pages:tenants:settings:profile') }}" />
@@ -58,12 +64,6 @@
                     <x-menu-item title="Planning et Horaires" icon="o-clock" link="####" />
                     <x-menu-item title="Évaluations " icon="o-presentation-chart-line" link="####" />
                     <x-menu-item title="Gestion des Documents " icon="o-folder-open" link="####" />
-                </x-menu-sub>
-
-                <x-menu-sub title="Gestion Sections/Niveaux" icon="o-briefcase">
-                    <x-menu-item title="Niveaux" icon="o-rectangle-stack"
-                        link="{{ route('pages:tenants:settings:profile') }}" />
-                    <x-menu-item title="Sections" icon="o-rectangle-stack" link="####" />
                 </x-menu-sub>
 
                 <x-menu-sub title="Gestion des Inscriptions" icon="o-briefcase">
@@ -80,10 +80,7 @@
                     <x-menu-item title="Performances Académiques" icon="o-clock" link="####" />
                     <x-menu-item title="Ressources Pédagogiques " icon="o-presentation-chart-line" link="####" />
                     <x-menu-item title="Activités Extrascolaires" icon="o-folder-open" link="####" />
-                </x-menu-sub>
-
-                <x-menu-item title="Tableaud de board" icon="o-sparkles" link="###" />
-                <x-menu-item title="Tableaud de board" icon="o-sparkles" link="###" />
+                </x-menu-sub> --}}
             </x-menu>
         </x-slot:sidebar>
 

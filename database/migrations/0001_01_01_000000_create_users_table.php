@@ -14,6 +14,11 @@ return new class () extends Migration {
 
             $table->string('name');
             $table->string('last_name')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('cin')->nullable()->unique();
+            $table->string('telephone')->nullable()->unique();
+            $table->enum('state', ['active', 'inactive'])->default('active');
+            $table->boolean('is_admin')->default(false);
             //$table->string('etablissement');
             $table->string('email')->unique();
             $table->string('password');

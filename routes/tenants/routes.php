@@ -13,12 +13,18 @@ Route::middleware(['web', InitializeTenancyByDomain::class, PreventAccessFromCen
 
     Route::middleware(['auth'])->group(static function (): void {
         Route::view('/', 'pages.tenants.index')->name('home');
-        Route::view('annees', 'pages.tenants.annees.index')->name('annees');
-        Route::view('annees/create', 'pages.tenants.annees.create')->name('annees.create');
         Route::prefix('settings')->as('settings:')->group(
             base_path(
                 path: 'routes/tenants/settings.php',
             )
         );
+
+        // Routes for configuration modules
+        Route::prefix('configurations')->as('configurations:')->group(
+            base_path(
+                path: 'routes/tenants/configurations.php',
+            )
+        );
+
     });
 });
