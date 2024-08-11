@@ -18,7 +18,7 @@ new class extends Component {
     public function with(): array
     {
         return [
-            'niveaus' => $this->niveaus(),
+            'niveaus' => Niveau::withCount('sections')->get(),
         ];
     }
 }; ?>
@@ -46,8 +46,8 @@ new class extends Component {
                                         class="font-semibold text-gray-800 group-hover:text-blue-600 dark:group-hover:text-neutral-400 dark:text-neutral-200">
                                         {{ $niveau->name }}
                                     </h3>
-                                    <p class="text-sm text-gray-500 dark:text-neutral-500">
-                                        0 sections
+                                    <p class="text-sm font-semibold text-purple-800 dark:text-amber-500">
+                                        {{ $niveau->sections_count }} salles de classe
                                     </p>
                                 </div>
                                 <div>

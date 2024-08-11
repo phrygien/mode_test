@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Niveau extends Model
@@ -16,8 +17,13 @@ class Niveau extends Model
         "cycle_id"
     ];
 
-    public function cycles(): HasMany
+    public function cycle(): BelongsTo
     {
-        return $this->hasMany(Cycle::class);
+        return $this->belongsTo(Cycle::class);
+    }
+
+    public function sections(): HasMany
+    {
+        return $this->hasMany(Section::class);
     }
 }
