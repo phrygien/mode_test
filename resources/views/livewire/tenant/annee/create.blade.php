@@ -1,5 +1,6 @@
 <?php
 use Mary\Traits\Toast;
+use Carbon\Carbon;
 use App\Models\AnneeScolaire;
 use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
@@ -16,16 +17,36 @@ new class extends Component {
     #[Rule('required')]
     public $fin = '';
 
+    public function updatedDebut($value): void
+    {
+        // Convertir les dates en objets Carbon
+        $debut = Carbon::parse($value);
+
+        // Calculer la date de fin en ajoutant 9 mois à la date de début
+        $fin = $debut->copy()->addMonths(9)->subDay()->format('d/m/Y'); // Format 'J/M/Y'
+
+        // Assigner la date de fin formatée à la propriété fin
+        $this->fin = $fin;
+    }
+
     public function save(): void
     {
         $this->validate();
 
+        // Convertir la date de début en un objet Carbon
+        $debut = Carbon::parse($this->debut);
+
+        // Calculer la date de fin en ajoutant 9 mois à la date de début
+        $fin = $debut->copy()->addMonths(9)->subDay()->format('Y-m-d'); // Format 'YYYY-MM-DD'
+
+        // Créer l'année scolaire avec la date de fin calculée
         AnneeScolaire::create([
             'name' => $this->name,
             'debut' => $this->debut,
-            'fin' => $this->fin,
+            'fin' => $fin,
         ]);
-        $this->success('Donneés sauvegardees avec succès.', redirectTo: '/configurations/annees');
+
+        $this->success('Données sauvegardées avec succès.', redirectTo: '/configurations/annees');
 
         $this->reset();
     }
@@ -44,8 +65,8 @@ new class extends Component {
             <div>
                 <x-form wire:submit="save">
                     <x-input wire:model="name" label="Name" />
-                    <x-datetime label="Debut" wire:model="debut" icon="o-calendar" />
-                    <x-datetime label="Fin" wire:model="fin" icon="o-calendar" />
+                    <x-datetime label="Debut année scolaire" wire:model.live="debut" icon="o-calendar" />
+                    <x-input label="Date fin année scolaire" wire:model="fin" icon="o-calendar" disabled />
                     <x-slot:actions>
                         <x-button label="Annuler" />
                         <x-button label="Créer" class="btn-primary" type="submit" spinner="save"

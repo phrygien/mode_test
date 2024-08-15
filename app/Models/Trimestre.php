@@ -10,6 +10,13 @@ class Trimestre extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nom',
+        'debut',
+        'fin',
+        'annee_scolaire_id'
+    ];
+
     public function anneescolaire(): BelongsTo
     {
         return $this->belongsTo(AnneeScolaire::class);
