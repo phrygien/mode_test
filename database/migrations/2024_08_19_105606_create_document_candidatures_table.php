@@ -10,12 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('frais_inscriptions', function (Blueprint $table) {
+        Schema::create('document_candidatures', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('code')->unique();
-            $table->integer('montant');
-            $table->foreignId('cycle_id')->constrained('cycles')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('candidature_id')->constrained('candidatures')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('doc_name');
+            $table->string('file');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('frais_inscriptions');
+        Schema::dropIfExists('document_candidatures');
     }
 };

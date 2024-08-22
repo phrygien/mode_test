@@ -30,23 +30,6 @@ new class extends Component {
             </div>
             <!-- End Title -->
 
-            <!-- Switch -->
-            <div class="flex items-center justify-center">
-                <label for="pricing-switch" class="text-sm text-gray-600 min-w-14 me-3 dark:text-neutral-400">
-                    Monthly
-                </label>
-
-                <input type="checkbox" id="pricing-switch"
-                    class="relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-purple-600 disabled:opacity-50 disabled:pointer-events-none checked:bg-none checked:text-purple-600 checked:border-purple-600 focus:checked:border-purple-600 dark:bg-neutral-800 dark:border-neutral-800 dark:checked:bg-purple-500 dark:checked:border-purple-500 dark:focus:ring-offset-gray-600
-
-          before:inline-block before:size-6 before:bg-white checked:before:bg-white before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-neutral-400 dark:checked:before:bg-white"
-                    checked>
-
-                <label for="pricing-switch" class="text-sm text-gray-600 min-w-14 ms-3 dark:text-neutral-400">
-                    Annually
-                </label>
-            </div>
-            <!-- End Switch -->
 
             <!-- Grid -->
             <div
@@ -140,9 +123,8 @@ new class extends Component {
 
                         <li class="flex gap-x-2">
                             <svg class="shrink-0 mt-0.5 size-4 text-violet-900" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12" />
                             </svg>
                             <span class="text-gray-800 dark:text-neutral-400">
@@ -1537,9 +1519,9 @@ new class extends Component {
                                 Enterprise
                             </span>
                             <svg class="shrink-0 size-5 text-violet-600 dark:text-violet-500"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12" />
                             </svg>
                         </div>

@@ -45,7 +45,7 @@
 
                 <x-menu-item title="Tableaud de board" icon="o-sparkles" link="/" />
 
-                <x-menu-sub title="Configurations" icon="o-cog-8-tooth">
+                {{-- <x-menu-sub title="Configurations" icon="o-cog-8-tooth">
                     <x-menu-item title="Années Scolaires" icon="o-clock"
                         link="{{ route('pages:tenants:configurations:annees') }}" />
                     <x-menu-item title="Cyles d'etudes" icon="o-presentation-chart-line"
@@ -53,10 +53,30 @@
                     <x-menu-item title="Classes" icon="o-beaker" link="/configurations/niveaux" />
                     <x-menu-item title="Sections" icon="o-rectangle-stack" link="/configurations/sections" />
                     <x-menu-item title="Trimestres " icon="o-calendar-days" link="/configurations/trimestres" />
-                    <x-menu-item title="Frais d'inscriptions" icon="o-banknotes" link="####" />
+                </x-menu-sub> --}}
+                <x-menu-item title="Années Scolaires" icon="o-clock"
+                    link="{{ route('pages:tenants:configurations:annees') }}" />
+                <x-menu-item title="Cyles d'etudes" icon="o-presentation-chart-line" link="/configurations/cycles" />
+                <x-menu-item title="Classes" icon="o-beaker" link="/configurations/niveaux" />
+                <x-menu-item title="Sections" icon="o-rectangle-stack" link="/configurations/sections" />
+                <x-menu-item title="Trimestres " icon="o-calendar-days" link="/configurations/trimestres" />
+                <x-menu-sub title="Gestion de frais" icon="o-currency-dollar">
+                    <x-menu-item title="Frais d'adminissions" icon="o-banknotes" link="/frais/inscriptions" />
                     <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
                 </x-menu-sub>
 
+                {{-- <x-menu-sub title="Admissions" icon="o-archive-box-arrow-down">
+                    <x-menu-item title="Candidature " icon="o-clipboard-document-list" link="###" />
+                    <x-menu-item title="Suivi des Candidatures" icon="o-presentation-chart-line" link="####" />
+                    <x-menu-item title="Gestion des Documents" icon="o-document" link="####" />
+                    <x-menu-item title="Évaluation et Tests d'Entrée" icon="o-document-chart-bar" link="####" />
+                    <x-menu-item title="Décision et Inscription" icon="o-clipboard-document" link="####" />
+                </x-menu-sub> --}}
+                <x-menu-item title="Candidature " icon="o-clipboard-document-list" link="###" />
+                <x-menu-item title="Suivi des Candidatures" icon="o-presentation-chart-line" link="####" />
+                <x-menu-item title="Gestion des Documents" icon="o-document" link="####" />
+                <x-menu-item title="Évaluation et Tests d'Entrée" icon="o-document-chart-bar" link="####" />
+                <x-menu-item title="Décision et Inscription" icon="o-clipboard-document" link="####" />
             </x-menu>
         </x-slot:sidebar>
 

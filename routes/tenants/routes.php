@@ -26,5 +26,12 @@ Route::middleware(['web', InitializeTenancyByDomain::class, PreventAccessFromCen
             )
         );
 
+        // for managing academy fee
+        Route::prefix('frais')->as('frais:')->group(
+            base_path(
+                path: 'routes/tenants/frais.php',
+            )
+        );
+
     });
 });

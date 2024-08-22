@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="luxury">
 
 <head>
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
     </x-nav>
 
     {{-- MAIN --}}
-    <x-main full-width>
+    <x-main>
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
 
@@ -39,7 +39,7 @@
                     <x-menu-separator />
 
                     <livewire:tenants.user-menu />
-
+                    {{-- <x-menu-item title="Theme" icon="o-swatch" @click="$dispatch('mary-toggle-theme')" /> --}}
                     <x-menu-separator />
                 @endif
 

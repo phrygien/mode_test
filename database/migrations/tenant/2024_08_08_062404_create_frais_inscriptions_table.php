@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('nom');
             $table->string('code')->unique();
             $table->integer('montant');
-            $table->foreignId('niveaux_id')->constrained('niveaux')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('cycle_id')->constrained('cycles')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
