@@ -10,6 +10,7 @@
     "livewire/livewire": "^3.5",
     "livewire/volt": "^1.6",
     "robsontenorio/mary": "^1.32",
+    "spatie/livewire-filepond": "^1.1",
     "stancl/tenancy": "^3.8.4"
   },
   "require-dev": {

@@ -30,7 +30,7 @@ new class extends Component {
         $user = $auth->user();
 
         // Vérifier si l'utilisateur est actif
-        if ($user->state == 'inactive') {
+        if ($user->state != 'active') {
             $auth->logout();
             throw ValidationException::withMessages([
                 'email' => 'Votre compte est inactif. Veuillez contacter l\'administrateur.',
@@ -43,29 +43,27 @@ new class extends Component {
 
 <div>
     <main class="w-full mx-auto">
-        <div class="drawer inline lg:grid lg:drawer-open">
+        <div class="inline drawer lg:grid lg:drawer-open">
             <input id="" type="checkbox" class="drawer-toggle">
-            <div class="drawer-content w-full mx-auto p-5 lg:px-10 lg:py-5">
-                <!-- MAIN CONTENT -->
-                <div class="mt-20 md:w-96 mx-auto">
-                    <a href="/" wire:navigate="">
-                        <!-- Hidden when collapsed -->
-                        <div class="hidden-when-collapsed mb-8">
+            <div class="w-full p-5 mx-auto drawer-content lg:px-10 lg:py-5">
+
+                <div class="mx-auto mt-20 md:w-96">
+                    <a href="/auth/login" wire:navigate="">
+                        <div class="mb-8 hidden-when-collapsed">
                             <div class="flex gap-2">
                                 <img src="https://flow.mary-ui.com/images/flow.png" width="30" class="mt-1">
                                 <span
-                                    class="font-bold text-3xl mr-3 bg-gradient-to-r from-purple-500 to-pink-300 bg-clip-text text-transparent ">
+                                    class="mr-3 text-3xl font-bold text-transparent bg-gradient-to-r from-purple-500 to-pink-300 bg-clip-text ">
                                     flow
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Display when collapsed -->
                         <div class="display-when-collapsed hidden mx-5 mt-4 lg:mb-6 h-[28px]">
                             <img src="https://flow.mary-ui.com/images/flow.png" width="30" class="h-8">
                         </div>
                     </a>
-                    <x-form wire:submit="submit" class="grid grid-flow-row auto-rows-min gap-3">
+                    <x-form wire:submit="submit" class="grid grid-flow-row gap-3 auto-rows-min">
                         <x-input label="Email" wire:model="email" inline />
                         <x-input label="Mot de passe" wire:model="password" type="password" inline />
 
@@ -77,9 +75,9 @@ new class extends Component {
 
                 </div>
 
-                <div class="flex mt-20 justify-center">
-                    <!--[if BLOCK]><![endif]--> <a href="/support-us" wire:key="mary2058fb1d87b7edda012a0fbb32d38d16"
-                        type="button" class="btn normal-case btn-ghost" wire:navigate="">
+                <div class="flex justify-center mt-20">
+                    <a href="/support-us" wire:key="mary2058fb1d87b7edda012a0fbb32d38d16" type="button"
+                        class="normal-case btn btn-ghost" wire:navigate="">
 
                         <span class="block">
 
@@ -91,8 +89,7 @@ new class extends Component {
                             </svg></span><span class="">
                             Source code
                         </span></a>
-                    <!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--> <a href="https://mary-ui.com"
-                        wire:key="mary3e2bccb6feb2e70216e3258d8a32887a" type="button"
+                    <a href="https://mary-ui.com" wire:key="mary3e2bccb6feb2e70216e3258d8a32887a" type="button"
                         class="btn normal-case btn-ghost !text-pink-500" target="_blank">
                         <span class="block">
 

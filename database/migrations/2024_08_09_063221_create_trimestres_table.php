@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('annee_scolaire_id')->constrained('annee_scolaires')->onDelete('cascade')->onUpdate('cascade');
             $table->date('debut');
             $table->date('fin');
+            $table->enum('status', ['En cours', 'Termine'])->default('En cours');
             $table->timestamps();
         });
     }

@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Collection;
 use Mary\Traits\Toast;
+use Spatie\LivewireFilepond\WithFilePond;
 
 new class extends Component {
     use Toast;
+    use WithFilePond;
+
+    public $file;
 
     // utils class
     public $regions = [];
@@ -206,7 +210,7 @@ new class extends Component {
                     <x-input label="Télèphone" wire:model="ecole_phone" icon="o-phone" />
                 </div>
                 <div class="w-full">
-                    <select class="select select-primary w-full" wire:model="ecole_type">
+                    <select class="w-full select select-primary" wire:model="ecole_type">
                         <option disabled selected>Type?</option>
                         <option value="public">Public</option>
                         <option value="private">Private</option>
@@ -245,62 +249,4 @@ new class extends Component {
             <x-button label="Soumettre" class="btn-primary" type="submit" spinner="submit" icon="o-paper-airplane" />
         </x-slot:actions>
     </x-form>
-    {{-- <x-form wire:submit="submit" class="space-x-4">
-        <div class="space-y-4">
-            <div class="grid gap-5 lg:grid-cols-2">
-                <div>
-                    <x-card title="Tenant Information" separator class="mb-4">
-                        <div class="space-y-4">
-                            <x-input label="Tenant Name" wire:model="tenant_name" />
-                            <x-input label="Tenant Email" wire:model="tenant_email" />
-                        </div>
-                    </x-card>
-
-                    <x-card title="School Information" separator class="mb-4">
-                        <div class="space-y-4">
-                            <x-input label="Nom école" wire:model="ecole_name" />
-                            <x-input label="Abreviation école" wire:model="ecole_slug" />
-                            <select class="select select-primary w-full" wire:model="ecole_type">
-                                <option disabled selected>Type?</option>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
-                                <option value="other">Autre</option>
-                            </select>
-                            <x-input label="Email" wire:model="ecole_email" />
-                            <x-input label="Télèphone" wire:model="ecole_phone" />
-                        </div>
-                    </x-card>
-                </div>
-                <div>
-                    <x-card title="Adresse de l'école" separator class="mb-4 ">
-                        <div class="space-y-4">
-                            <div class="w-full">
-                                <x-choices label="Province" wire:model.live="ecole_province" :options="$provincesSearchable"
-                                    option-label="nom" icon="o-map-pin" height="max-h-96"
-                                    hint="Le province ou c'est situe l'école" single />
-                            </div>
-                            <div class="w-full">
-                                <x-choices-offline label="Region" wire:model.live="ecole_region" :options="$regions"
-                                    option-label="nom" icon="o-map-pin" height="max-h-96" single searchable />
-                            </div>
-                            <div>
-                                <x-choices-offline label="District" wire:model.live="ecole_district" :options="$districts"
-                                    option-label="libelle" icon="o-map-pin" height="max-h-96" single searchable />
-                            </div>
-                            <div>
-                                <x-choices-offline label="Commune" wire:model.live="ecole_commune" :options="$communes"
-                                    option-label="nom" icon="o-map-pin" height="max-h-96" single searchable />
-                            </div>
-                            <x-textarea label="Adresse exacte" wire:model="ecole_adresse"
-                                placeholder="Saisissez l'adresse ..." hint="Adresse exacte de l'école" rows="5" />
-                        </div>
-                    </x-card>
-                </div>
-
-            </div>
-        </div>
-        <x-slot:actions>
-            <x-button label="Soumettre" class="btn-primary" type="submit" spinner="submit" icon="o-paper-airplane" />
-        </x-slot:actions>
-    </x-form> --}}
 </div>

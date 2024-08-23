@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
+            $table->string('photo')->nullable();
             $table->string('nom');
             $table->string('prenom')->nullable();
             $table->date('date_naissance');
@@ -22,6 +23,8 @@ return new class extends Migration {
             $table->string('email')->nullable()->unique();
             $table->string('imatricule')->nullable();
             $table->string('adresse')->nullable();
+            $table->foreignId('admission_id')->nullable();// chaque eleve a une admission
+            $table->boolean('imported_from_file')->default(false);
             $table->foreignUlid('added_by')->constrained('users')->onUpdate('cascade')->onDelete('cascade'); // user add
             $table->timestamps();
         });

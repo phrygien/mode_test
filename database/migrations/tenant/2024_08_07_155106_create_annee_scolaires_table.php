@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('annee_scolaires', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->date('debut');
             $table->date('fin');
             $table->boolean('is_open')->default(false);

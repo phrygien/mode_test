@@ -33,7 +33,7 @@ final class TenancyServiceProvider extends ServiceProvider
                 JobPipeline::make([
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
-                    SeedTenantJob::class,
+                    SeedTenantJob::class, // seed db after created domains  
                     // Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.

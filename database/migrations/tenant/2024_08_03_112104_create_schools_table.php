@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('numero_serie')->unique();
             $table->string('logo')->nullable();
             $table->string('type')->default('Private');
             $table->integer('status')->nullable()->default(1);
