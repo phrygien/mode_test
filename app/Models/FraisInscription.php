@@ -14,11 +14,11 @@ class FraisInscription extends Model
         'nom',
         'code',
         'montant',
-        'niveaux_id',
+        'cycle_id',
     ];
 
     public function cycle(): BelongsTo
     {
-        return $this->belongsTo(Cycle::class, 'niveaux_id');
+        return $this->belongsTo(Cycle::class, 'cycle_id');
     }
 }

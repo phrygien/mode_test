@@ -15,7 +15,3 @@
 .mary-table-pagination button {
     @apply bg-base-100
 }
-
-hr {
-    @apply dark:border-b-0 dark:border-t-gray-700
-}

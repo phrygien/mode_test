@@ -15,10 +15,9 @@ return new class extends Migration {
             $table->foreignId('candidature_id')->constrained('candidatures')->onDelete('cascade');
             $table->foreignId('eleve_id')->constrained('eleves')->onDelete('cascade');
             $table->foreignId('annee_scolaire_id')->constrained('annee_scolaires')->onDelete('cascade');
-            $table->foreignId('niveaux_id')->constrained('niveau')->onDelete('cascade');
+            $table->foreignId('niveaux_id')->constrained('niveaux')->onDelete('cascade');
             $table->foreignId('cycle_id')->constrained('cycles')->onDelete('cascade');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
-            $table->timestamps('date_admission');
             $table->enum('statut', ['en attente', 'acceptée', 'refusee'])->default('en attente');
             $table->foreignUlid('added_by')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();

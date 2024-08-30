@@ -132,6 +132,9 @@ new class extends Component {
                 'domain' => $this->domaine . '.' . config('app.domain'),
             ]);
 
+            // Générer un numéro de série unique pour l'école
+            $numeroSerie = 'SCH-' . str_pad(School::max('id') + 1, 6, '0', STR_PAD_LEFT);
+
             // create etablissement
             $etablissement = School::create([
                 'name' => $this->ecole_name,
@@ -143,6 +146,7 @@ new class extends Component {
                 'region_id' => $this->ecole_region,
                 'district_id' => $this->ecole_district,
                 'commune_id' => $this->ecole_commune,
+                'numero_serie' => $numeroSerie, // Enregistrer le numéro de série
                 'user_id' => Auth::user()->id,
                 'address' => $this->ecole_adresse,
             ]);
@@ -185,9 +189,13 @@ new class extends Component {
     </x-header>
     <x-form wire:submit="submit">
         <x-card title="Tenant Information" class="mb-4">
-            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <x-filepond::upload wire:model="file" max-files="5" placeholder />
+            <div class="grid gap-4 sm:grid-cols-3 sm:gap-6">
                 <div class="w-full">
-                    <x-input label="Tenant Name" wire:model="tenant_name" icon="o-globe-americas" />
+                    <x-input label="Node de location" wire:model="tenant_name" icon="o-globe-americas" />
+                </div>
+                <div class="w-full">
+                    <x-input label="Nom de domaine" wire:model="domaine" icon="o-globe-americas" />
                 </div>
                 <div class="w-full">
                     <x-input label="Tenant Email" wire:model="tenant_email" icon="o-globe-americas" />

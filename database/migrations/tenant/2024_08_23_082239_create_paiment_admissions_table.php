@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('montant');
             $table->enum('status', ['Paye', 'Non Paye'])->default('Non Paye');
             $table->enum('type', ['espece', 'cheque', 'virement'])->default('espece');
-            $table->timestamps('date_paiement');
+            //$table->timestamps('date_paiement');
             $table->foreignUlid('added_by')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

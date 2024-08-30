@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('nom');
             $table->foreignId('periode_examen_id')->constrained(); // Lien avec la période d'examen
+            $table->foreignId('niveaux_id')->constrained('niveaux')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('section_id')->constrained(); // Lien avec la section
+            $table->foreignId('classroom_id')->constrained('classrooms')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_examen');
             $table->enum('status', ['en cours', 'terminé', 'annule', 'en entente'])->default('en entente');
             $table->timestamps();

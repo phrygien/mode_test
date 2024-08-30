@@ -34,7 +34,7 @@ new class extends Component {
             'last_name' => $this->last_name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
-            'etablissement' => $this->etablissement,
+            //'etablissement' => $this->etablissement,
         ]);
 
         $credentials = [

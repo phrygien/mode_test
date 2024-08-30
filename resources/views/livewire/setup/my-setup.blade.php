@@ -29,9 +29,9 @@ new class extends Component {
 
 <div>
     <x-header title="Mon setup" separator>
-        <x-slot:actions>
+        {{-- <x-slot:actions>
             <x-theme-toggle class="btn btn-circle btn-ghost" />
-        </x-slot:actions>
+        </x-slot:actions> --}}
     </x-header>
     {{-- <x-card>
         <!-- Profile -->

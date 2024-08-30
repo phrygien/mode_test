@@ -10,12 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('frais_admissions', function (Blueprint $table) {
+        Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
-            $table->foreignId('cycle_id')->constrained('cycles');
-            $table->foreignId('annee_scolaire_id')->constrained('annee_scolaires');
-            $table->foreignUlid('user_id')->constrained('users');
+            $table->string('nom'); // Ex: "6ème A", "Première S1"
+            $table->foreignId('section_id')->constrained('sections')->onUpdate('cascade')->onDelete('cascade'); // Relation avec les sections
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('frais_admissions');
+        Schema::dropIfExists('classrooms');
     }
 };

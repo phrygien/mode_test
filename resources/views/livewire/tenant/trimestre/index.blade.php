@@ -38,10 +38,31 @@ new class extends Component {
 
     public function with(): array
     {
+        // Récupérer les trimestres
+        $trimestres = $this->trimestres();
+
+        // Initialiser le tableau d'événements
+        $events = [];
+
+        // Boucler sur chaque trimestre
+        foreach ($trimestres as $trimestre) {
+            // Vérifier le statut du trimestre
+            $cssClass = $trimestre->status === 'Termine' ? '!bg-pink-200' : '!bg-purple-500';
+            $terminated = $trimestre->status === 'Termine' ? 'Terminé' : 'En cours';
+            $events[] = [
+                'label' => $trimestre->nom, // Nom du trimestre
+                'description' => 'status' . ':' . $terminated, // Ajouter une description si nécessaire
+                'css' => $cssClass, // Ajouter des classes CSS si nécessaire
+                'range' => [$trimestre->debut, $trimestre->fin], // Date début et fin du trimestre
+            ];
+        }
+
+        // Retourner les données avec les événements dynamiques
         return [
-            'trimestres' => $this->trimestres(),
+            'trimestres' => $trimestres,
             'headers' => $this->headers(),
             'anneescolaires' => AnneeScolaire::all(),
+            'events' => $events,
         ];
     }
 
@@ -79,26 +100,35 @@ new class extends Component {
             ];
         }
 
-        // Enregistrer les trimestres dans la base de données
-        foreach ($trimestres as $trimestre) {
-            Trimestre::create([
-                'annee_scolaire_id' => $annee->id,
-                'nom' => $trimestre['nom'],
-                'debut' => $trimestre['debut'],
-                'fin' => $trimestre['fin'],
-            ]);
+        // verifier si l'annee scolaire est ouverte et il n'y a pas de trimestre en cours
+        if ($annee->is_open && !Trimestre::where('annee_scolaire_id', $annee->id)->exists()) {
+            // Enregistrer les trimestres dans la base de données
+            foreach ($trimestres as $trimestre) {
+                Trimestre::create([
+                    'annee_scolaire_id' => $annee->id,
+                    'nom' => $trimestre['nom'],
+                    'debut' => $trimestre['debut'],
+                    'fin' => $trimestre['fin'],
+                ]);
+            }
+            $this->success('Trimestre creer avec succes');
+        } else {
+            $this->warning('Annee scolaire est ouverte et trimestre en cours');
         }
-
-        $this->success('Trimestres générés avec succès');
     }
 }; ?>
 
 <div>
-    <x-header title="Trimestres" subtitle="Gestion des trimestres">
+    <x-header title="Trimestres" subtitle="Gestion des trimestres" separator>
         <x-slot:actions>
-            <x-theme-toggle class="btn btn-circle btn-ghost" />
+            <x-button class="btn-primary" label="Generer les trimetres de l'annee sccolaire"
+                wire:click='generateTrimestre' />
         </x-slot:actions>
     </x-header>
+
+
+    <x-calendar :events="$events" months="12" locale="fr-FR" weekend-highlight sunday-start />
+    {{-- 
     @if (count($trimestres) > 0)
         <x-card>
             @foreach ($trimestres as $trimestre)
@@ -109,9 +139,9 @@ new class extends Component {
         <div
             class="flex flex-col bg-white border shadow-sm min-h-60 rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="flex flex-col items-center justify-center flex-auto p-4 md:p-5">
-                <svg class="text-gray-500 size-10 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24"
-                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg class="text-gray-500 size-10 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="22" x2="2" y1="12" y2="12"></line>
                     <path
                         d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
@@ -128,7 +158,7 @@ new class extends Component {
                 </p>
             </div>
         </div>
-    @endif
+    @endif --}}
     {{-- <x-card>
         <x-table :headers="$headers" :rows="$trimestres" :sort-by="$sortBy" with-pagination link="sections/{id}/edit" />
     </x-card> --}}

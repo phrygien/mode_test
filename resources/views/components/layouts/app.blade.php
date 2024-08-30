@@ -8,6 +8,9 @@
     <title>{{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- Vanilla Calendar --}}
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@2.9.6/build/vanilla-calendar.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@2.9.6/build/vanilla-calendar.min.css" rel="stylesheet">
 </head>
 
 <body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
@@ -30,13 +33,13 @@
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
 
             {{-- BRAND --}}
-            <x-app-brand class="p-5 pt-3" />
+            {{-- <x-app-brand class="p-5 pt-3" /> --}}
 
             {{-- MENU --}}
             <x-menu title="{{ null }}" activate-by-route>
 
                 @if (auth()->check())
-                    <x-menu-separator />
+                    {{-- <x-menu-separator /> --}}
 
                     <livewire:tenants.user-menu />
 
@@ -45,38 +48,44 @@
 
                 <x-menu-item title="Tableaud de board" icon="o-sparkles" link="/" />
 
-                {{-- <x-menu-sub title="Configurations" icon="o-cog-8-tooth">
-                    <x-menu-item title="Années Scolaires" icon="o-clock"
+                <x-menu-sub title="Gestion des établissemnts" icon="o-cog-8-tooth">
+                    <x-menu-item title="Années scolaires" icon="o-clock"
                         link="{{ route('pages:tenants:configurations:annees') }}" />
                     <x-menu-item title="Cyles d'etudes" icon="o-presentation-chart-line"
                         link="/configurations/cycles" />
                     <x-menu-item title="Classes" icon="o-beaker" link="/configurations/niveaux" />
                     <x-menu-item title="Sections" icon="o-rectangle-stack" link="/configurations/sections" />
+                    <x-menu-item title="Salles de classe" icon="o-home-modern" link="###" />
                     <x-menu-item title="Trimestres " icon="o-calendar-days" link="/configurations/trimestres" />
-                </x-menu-sub> --}}
-                <x-menu-item title="Années Scolaires" icon="o-clock"
-                    link="{{ route('pages:tenants:configurations:annees') }}" />
-                <x-menu-item title="Cyles d'etudes" icon="o-presentation-chart-line" link="/configurations/cycles" />
-                <x-menu-item title="Classes" icon="o-beaker" link="/configurations/niveaux" />
-                <x-menu-item title="Sections" icon="o-rectangle-stack" link="/configurations/sections" />
-                <x-menu-item title="Trimestres " icon="o-calendar-days" link="/configurations/trimestres" />
-                <x-menu-sub title="Gestion de frais" icon="o-currency-dollar">
-                    <x-menu-item title="Frais d'adminissions" icon="o-banknotes" link="/frais/inscriptions" />
+                    <x-menu-item title="Frais d'admissions" icon="o-banknotes" link="/frais/admissions" />
+                    <x-menu-item title="Frais d'inscriptions" icon="o-banknotes" link="/frais/inscriptions" />
                     <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
                 </x-menu-sub>
 
-                {{-- <x-menu-sub title="Admissions" icon="o-archive-box-arrow-down">
-                    <x-menu-item title="Candidature " icon="o-clipboard-document-list" link="###" />
-                    <x-menu-item title="Suivi des Candidatures" icon="o-presentation-chart-line" link="####" />
-                    <x-menu-item title="Gestion des Documents" icon="o-document" link="####" />
-                    <x-menu-item title="Évaluation et Tests d'Entrée" icon="o-document-chart-bar" link="####" />
-                    <x-menu-item title="Décision et Inscription" icon="o-clipboard-document" link="####" />
+                {{-- <x-menu-sub title="Niveaux d'etudes" icon="o-academic-cap">
+                    <x-menu-item title="Frais d'adminissions" icon="o-banknotes" link="/frais/inscriptions" />
+                    <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
                 </x-menu-sub> --}}
-                <x-menu-item title="Candidature " icon="o-clipboard-document-list" link="###" />
-                <x-menu-item title="Suivi des Candidatures" icon="o-presentation-chart-line" link="####" />
-                <x-menu-item title="Gestion des Documents" icon="o-document" link="####" />
-                <x-menu-item title="Évaluation et Tests d'Entrée" icon="o-document-chart-bar" link="####" />
-                <x-menu-item title="Décision et Inscription" icon="o-clipboard-document" link="####" />
+
+                {{-- <x-menu-sub title="Gestion de frais" icon="o-currency-dollar">
+                    <x-menu-item title="Frais d'adminissions" icon="o-banknotes" link="/frais/inscriptions" />
+                    <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
+                </x-menu-sub> --}}
+
+                <x-menu-sub title="Gestion des admissions" icon="o-archive-box-arrow-down">
+                    <x-menu-item title="Demande d'admission " icon="o-clipboard-document-list" link="###" />
+                    <x-menu-item title="Admissions" icon="o-presentation-chart-line" link="####" />
+                </x-menu-sub>
+
+                <x-menu-item title="Gestion des élèves" icon="o-user-group" link="###" />
+                <x-menu-item title="Novelles inscriptions" icon="o-folder-open" link="###" />
+
+                <x-menu-sub title="Suivi paiements" icon="o-banknotes">
+                    <x-menu-item title="Paiement admissions" icon="o-banknotes" link="###" />
+                    <x-menu-item title="Paiement inscriptions" icon="o-banknotes" link="####" />
+                    <x-menu-item title="Paiement frais" icon="o-banknotes" link="####" />
+                </x-menu-sub>
+
             </x-menu>
         </x-slot:sidebar>
 
@@ -88,6 +97,14 @@
 
     {{--  TOAST area --}}
     <x-toast />
+    {{-- <script>
+        window.addEventListener("DOMContentLoaded", () => Preline.start());
+    </script> --}}
 </body>
+{{-- <script>
+    document.addEventListener("livewire:navigated", () => {
+        window.HSStaticMethods.autoInit();
+    });
+</script> --}}
 
 </html>
