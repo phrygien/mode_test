@@ -33,5 +33,12 @@ Route::middleware(['web', InitializeTenancyByDomain::class, PreventAccessFromCen
             )
         );
 
+        // for managing academy settings
+        Route::prefix('academy')->as('academy:')->group(
+            base_path(
+                path: 'routes/tenants/academy.php',
+            )
+        );
+
     });
 });

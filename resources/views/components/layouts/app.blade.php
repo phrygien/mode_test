@@ -6,11 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
-
+    @filepondScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- Cropper.js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+
     {{-- Vanilla Calendar --}}
     <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@2.9.6/build/vanilla-calendar.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@2.9.6/build/vanilla-calendar.min.css" rel="stylesheet">
+
+    {{-- Flatpickr  --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    {{-- TinyMCE --}}
+    <script src="https://cdn.tiny.cloud/1/YOUR-KEY-HERE/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    {{-- EasyMDE --}}
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
 </head>
 
 <body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
@@ -71,11 +86,12 @@
                     <x-menu-item title="Frais d'adminissions" icon="o-banknotes" link="/frais/inscriptions" />
                     <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
                 </x-menu-sub> --}}
-
-                <x-menu-sub title="Gestion des admissions" icon="o-archive-box-arrow-down">
-                    <x-menu-item title="Demande d'admission " icon="o-clipboard-document-list" link="###" />
-                    <x-menu-item title="Admissions" icon="o-presentation-chart-line" link="####" />
-                </x-menu-sub>
+                <x-menu-item title="Admissions" icon="o-presentation-chart-line" link="/academy/admissions" />
+                {{-- <x-menu-sub title="Gestion des admissions" icon="o-archive-box-arrow-down">
+                    <x-menu-item title="Demande d'admission " icon="o-clipboard-document-list"
+                        link="/academy/admissions/create" />
+                    <x-menu-item title="Admissions" icon="o-presentation-chart-line" link="/academy/admissions" />
+                </x-menu-sub> --}}
 
                 <x-menu-item title="Gestion des élèves" icon="o-user-group" link="###" />
                 <x-menu-item title="Novelles inscriptions" icon="o-folder-open" link="###" />

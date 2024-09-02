@@ -2,7 +2,7 @@
     'multiple' => false,
     'required' => false,
     'disabled' => false,
-    'placeholder' => __('Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'),
+    'placeholder' => __('Drag & Drop your files or <span class="filepond--label-action"> Parcourir </span>'),
 ])
 
 @php
@@ -20,7 +20,7 @@
     $pondLocalizations = __('livewire-filepond::filepond');
 @endphp
 
-<div class="{{ $attributes->get('class') }}" wire:ignore x-cloak x-data="{
+<div class="{{ $attributes->get('class') }} " wire:ignore x-cloak x-data="{
     model: @entangle($wireModelAttribute),
     isMultiple: @js($multiple),
     current: undefined,
@@ -71,5 +71,5 @@
         if (error) console.log(error);
     });
 }">
-    <input type="file" x-ref="input">
+    <input type="file" x-ref="input" class="dark:bg-slate-600">
 </div>

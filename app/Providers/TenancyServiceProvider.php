@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Jobs\CreateFrameworkDirectoriesForTenant;
 use App\Jobs\SeedTenantJob;
 use Closure;
 use Illuminate\Contracts\Http\Kernel;
@@ -34,6 +35,7 @@ final class TenancyServiceProvider extends ServiceProvider
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
                     SeedTenantJob::class, // seed db after created domains  
+                    CreateFrameworkDirectoriesForTenant::class,
                     // Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.
