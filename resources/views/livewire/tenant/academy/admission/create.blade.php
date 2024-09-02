@@ -128,11 +128,9 @@ new class extends Component {
                 <x-header title="Infos personnelles" subtitle="Informations Personnelles de l'Élève" size="text-2xl" />
             </div>
             <div class="col-span-3 grid gap-3">
-                <x-file label="Avatar" wire:model="photo" accept="image/png, image/jpeg" crop-after-change>
-                    <img src="{{ $user->avatar ?? 'https://flow.mary-ui.com/images/empty-user.jpg' }}"
-                        class="h-40 rounded-lg" />
-                </x-file>
                 <div class="grid lg:grid-cols-2 gap-3 sm:grid-cols-1 mb-3">
+                    <x-filepond::upload wire:model="file" />
+                    <x-filepond::upload wire:model="file" />
                     <x-input wire:model.defer="demandeur.nom" label="Nom" />
                     <x-input wire:model.defer="demandeur.prenom" label="Prénom" />
                     <x-datepicker label="Date de naissance" wire:model="date_naissance" icon="o-calendar" />
