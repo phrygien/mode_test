@@ -14,11 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->string('nom');
             $table->string('prenom')->nullable();
-            $table->string('telephone')->unique();
+            $table->string('telephone')->unique()->nullable();
             $table->string('email')->nullable()->unique();
             $table->text('adresse');
             $table->string('photo')->nullable();
             $table->string('profession')->nullable()->unique();
+            $table->foreignId('eleve_id')->constrained('eleves')->onUpdate('cascade')->onDelete('cascade');
+            $table->enum('lien_parente', ['père', 'mère', 'oncle']); // Lien de parenté avec l'élève (père, mère, oncle, etc.)
             $table->timestamps();
         });
     }

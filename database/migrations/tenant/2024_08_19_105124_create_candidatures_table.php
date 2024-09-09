@@ -12,21 +12,52 @@ return new class extends Migration {
     {
         Schema::create('candidatures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('annee_scolaire_id')->constrained('annee_scolaires')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('cycle_id')->constrained('cycles')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('niveaux_id')->constrained('niveaux')->onUpdate('cascade')->onDelete('cascade');
+
+            // infos curent scolaire
+            $table->string('current_school');
+            $table->foreignId('curent_cycle')->constrained('cycles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('current_niveau')->constrained('niveaux')->onUpdate('cascade');
+            $table->string('certificat_scolarite');
+
+            // infos scolaire demande
+            $table->foreignId('cycle_demande')->constrained('cycles')->onUpdate('cascade'); // cycle demande
+            $table->foreignId('niveau_demande')->constrained('niveaux')->onUpdate('cascade')->onDelete('cascade');
+
+            // infos personnelles
+            $table->string('photo')->nullable(); // photo d'identite
             $table->string('nom');
-            $table->string('prenom');
+            $table->string('prenom')->nullable();
             $table->date('date_naissance');
             $table->string('lieu_naissance')->nullable();
-            $table->string('sexe');
+            $table->string('nationalite')->default('Malagasy');
+            $table->enum('genre', ['masculin', 'feminin']); // Genre
+            $table->string('adresse'); // Adresse résidentielle
+            $table->string('telephone')->nullable()->unique(); // Numéro de téléphone
+            $table->string('email')->nullable()->unique(); // Adresse email
             $table->string('cin')->nullable()->unique();
-            $table->string('adresse');
-            $table->string('telephone')->nullable();
-            $table->string('email')->nullable();
+
+            // infos famille
+            $table->string('nom_pere');
+            $table->string('prenom_pere')->nullable();
+            $table->string('phone_pere')->unique()->nullable();
+            $table->string('email_pere')->unique()->nullable();
+            $table->string('profession_pere')->nullable();
+            $table->string('adresse_pere');
+
+            //info famille mere
+            $table->string('mere');
+            $table->string('fonction_mere')->nullable();
+            $table->string('phone_mere')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->text('adresse_mere')->nullable(); // si different du pere ou de l'eleves
+
+            // infos candidature
+            $table->string('reference_candidature')->unique();
             $table->string('status')->default('En cours'); // "En cours", "Validée", "Rejetée"
-            $table->string('current_school');
-            $table->text('motivation')->nullable();
+            $table->foreignUlid('user_validate'); // si la candidature est validee
+            $table->foreignUlid('aded_by');
+            $table->foreignUlid('user_declined'); // si la candidature et rejetee
+
             $table->timestamps();
         });
     }

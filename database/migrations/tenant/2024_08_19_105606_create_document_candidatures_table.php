@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('document_candidatures', function (Blueprint $table) {
             $table->id();
             $table->foreignId('candidature_id')->constrained('candidatures')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('doc_name');
-            $table->string('file');
+            $table->string('doc_name'); // ex: certificat de scolarité, carte d'etude precedent, acienne buletin
+            $table->string('file'); // ex: jpg, pdf, png
             $table->timestamps();
         });
     }
