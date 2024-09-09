@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->string('telephone')->nullable()->unique(); // Numéro de téléphone
             $table->string('email')->nullable()->unique(); // Adresse email
             $table->string('cin')->nullable()->unique();
-            $table->foreignId('admission_id')->nullable();// chaque eleve a une admission
+            //$table->foreignId('admission_id')->nullable();// chaque eleve a une admission
             $table->boolean('imported_from_file')->default(false);
             $table->boolean('admission_direct')->default(false);
             $table->enum('statut', ['inscrit', 'en attente', 'suspendu'])->default('inscrit'); // Statut de l'élève

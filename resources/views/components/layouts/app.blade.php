@@ -26,6 +26,7 @@
     {{-- EasyMDE --}}
     <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
     <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+
 </head>
 
 <body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
@@ -43,7 +44,7 @@
     </x-nav>
 
     {{-- MAIN --}}
-    <x-main full-width>
+    <x-main>
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
 
@@ -62,7 +63,6 @@
                 @endif
 
                 <x-menu-item title="Tableaud de board" icon="o-sparkles" link="/" />
-
                 <x-menu-sub title="Gestion des établissemnts" icon="o-cog-8-tooth">
                     <x-menu-item title="Années scolaires" icon="o-clock"
                         link="{{ route('pages:tenants:configurations:annees') }}" />
@@ -76,7 +76,6 @@
                     <x-menu-item title="Frais d'inscriptions" icon="o-banknotes" link="/frais/inscriptions" />
                     <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />
                 </x-menu-sub>
-
                 {{-- <x-menu-sub title="Niveaux d'etudes" icon="o-academic-cap">
                     <x-menu-item title="Frais d'adminissions" icon="o-banknotes" link="/frais/inscriptions" />
                     <x-menu-item title="Frais scolaires" icon="o-currency-euro" link="####" />

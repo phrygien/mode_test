@@ -60,67 +60,7 @@ new class extends Component {
 
 <div>
     <x-header title="Novelle demande" separator />
-    {{-- <x-form wire:submit="save">
-        <div class="grid gap-5 lg:grid-cols-2">
-            <div>
 
-                <div class="col-span-3 grid gap-3">
-                    <x-filepond::upload wire:model="file" />
-                    <x-card class="mb-4">
-                        <div class="grid lg:grid-cols-2 gap-3 sm:grid-cols-1 mb-3">
-                            <x-input wire:model.defer="demandeur.nom" label="Nom" />
-                            <x-input wire:model.defer="demandeur.prenom" label="Prénom" />
-                            <x-datepicker label="Date de naissance" wire:model="date_naissance" icon="o-calendar" />
-                            <x-input wire:model.defer="lieu_naissance" label="Lieu de naissance" />
-
-                            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bordered-radio-1"
-                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Homme</label>
-                            </div>
-                            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-                                <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bordered-radio-2"
-                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Femme</label>
-                            </div>
-
-                        </div>
-                        <select class="w-full select select-primary mt-3 mb-3" wire:model="ecole_type">
-                            <option disabled selected>Nationalite ?</option>
-                            <option value="public">Public</option>
-                            <option value="private">Private</option>
-                            <option value="other">Autre</option>
-                        </select>
-                        <div class="space-y-4">
-                            <x-input wire:model.defer="demandeur.nom" label="Numéro CIN" />
-                            <x-markdown wire:model="adresse" label="Adresse exacte" />
-                        </div>
-                    </x-card>
-                    <x-card class="mb-4">
-                        <div class="space-y-4">
-                            <x-input label="Acien ecole" />
-                        </div>
-                    </x-card>
-                </div>
-            </div>
-            <div>
-                <x-card class="mb-4">
-                    <div class="space-y-4">
-                        <x-choices label="Pour quelle cycle ?" wire:model.live="cycle_searchable_id" :options="$cyclesSearchable"
-                            single searchable />
-                        <x-choices-offline label="Niveau" wire:model.live="niveau_id" :options="$niveauxs"
-                            option-label="name" height="max-h-96" single searchable />
-                    </div>
-                </x-card>
-            </div>
-        </div>
-        <x-slot:actions>
-            <x-button label="Annuler" link="/frais/admissions" />
-            <x-button label="Sauvegarder" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
-        </x-slot:actions>
-    </x-form> --}}
     <x-form wire:submit="save">
         {{--  Basic section  --}}
         <div class="lg:grid grid-cols-5">
@@ -128,11 +68,16 @@ new class extends Component {
                 <x-header title="Infos personnelles" subtitle="Informations Personnelles de l'Élève" size="text-2xl" />
             </div>
             <div class="col-span-3 grid gap-3">
+                <div class="grid-cols-3">
+                    <x-file wire:model="file" accept="image/png" crop-after-change>
+                        <img src="{{ $user->avatar ?? 'https://flow.mary-ui.com/images/empty-user.jpg' }}"
+                            class="h-40 rounded-lg" />
+                    </x-file>
+                </div>
                 <div class="grid lg:grid-cols-2 gap-3 sm:grid-cols-1 mb-3">
-                    <x-filepond::upload wire:model="file" />
-                    <x-filepond::upload wire:model="file" />
-                    <x-input wire:model.defer="demandeur.nom" label="Nom" />
-                    <x-input wire:model.defer="demandeur.prenom" label="Prénom" />
+                    {{-- <x-filepond::upload wire:model="file" /> --}}
+                    <x-input wire:model.defer="demandeur.nom" label="Nom" icon="o-user" />
+                    <x-input wire:model.defer="demandeur.prenom" label="Prénom" icon="o-user" />
                     <x-datepicker label="Date de naissance" wire:model="date_naissance" icon="o-calendar" />
                     <x-input wire:model.defer="lieu_naissance" label="Lieu de naissance" />
 
@@ -174,14 +119,18 @@ new class extends Component {
             </div>
             <div class="col-span-3 grid gap-3">
                 <x-input label="Établissement précédent" />
-                <x-input label="Niveau scolaire actuel" />
+                {{-- <x-input label="Niveau scolaire précédent" /> --}}
+                <x-choices label="Cycle précédent ?" wire:model.live="cycle_searchable_id" :options="$cyclesSearchable" single
+                    searchable />
+                <x-choices-offline label="Classe précédent" wire:model.live="niveau_id" :options="$niveauxs"
+                    option-label="name" height="max-h-96" single searchable />
+                <x-file wire:model="document_justificatif" label="Certificat de scolarite" hint="Only PDF"
+                    accept="application/pdf" />
                 <x-filepond::upload wire:model="file" />
                 <x-choices label="Cycle demandée ?" wire:model.live="cycle_searchable_id" :options="$cyclesSearchable" single
                     searchable />
                 <x-choices-offline label="Classe demandée" wire:model.live="niveau_id" :options="$niveauxs"
                     option-label="name" height="max-h-96" single searchable />
-                <x-file wire:model="document_justificatif" label="Documents justificatifs" hint="Only PDF"
-                    accept="application/pdf" />
             </div>
         </div>
 
@@ -189,15 +138,29 @@ new class extends Component {
 
         <div class="lg:grid grid-cols-5">
             <div class="col-span-2">
-                <x-header title="Parents" subtitle="Informations sur la Famille" size="text-2xl" />
+                <x-header title="Père" subtitle="Informations du pere" size="text-2xl" />
             </div>
             <div class="col-span-3 grid gap-3">
-                <x-input label="Nom et prénom du père " />
-                <x-input label="Nom et prénom de la mère" />
-                <x-input label="Profession des parents" hint="(profession actuelle du père et de la mère)" />
-                <x-input label="Adresse des parents" hint="(modifier si différente de celle de l'élève)" />
-                <x-input label="Téléphone des parents" hint="numéro de contact des parents ou tuteurs" />
-                <x-input label="Email des parents" hint="adresse email des parents ou tuteurs" />
+                <x-input label="Nom du père " />
+                <x-input label="Prénom du père" />
+                <x-input label="Telephone" />
+                <x-input label="Email" />
+                <x-input label="Profession" hint="(profession actuelle du père)" />
+            </div>
+        </div>
+
+        <hr class="my-5" />
+
+        <div class="lg:grid grid-cols-5">
+            <div class="col-span-2">
+                <x-header title="Mère" subtitle="Informations de la mère" size="text-2xl" />
+            </div>
+            <div class="col-span-3 grid gap-3">
+                <x-input label="Nom " />
+                <x-input label="Prénom" />
+                <x-input label="Telephone" />
+                <x-input label="Email" />
+                <x-input label="Profession" hint="(profession actuelle de la mère)" />
             </div>
         </div>
 

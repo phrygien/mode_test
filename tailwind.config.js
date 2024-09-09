@@ -47,7 +47,12 @@ export default {
   ],
   theme: {
     
-    extend: {},
+    extend: {
+      fontFamily: {
+        title: ['Montserrat', 'sans-serif'],
+        body: ['Space Mono', 'monospace'],
+      },
+    },
   },
   plugins: [
     require("daisyui"),

@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->string('current_school');
             $table->foreignId('curent_cycle')->constrained('cycles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('current_niveau')->constrained('niveaux')->onUpdate('cascade');
-            $table->string('certificat_scolarite');
 
             // infos scolaire demande
             $table->foreignId('cycle_demande')->constrained('cycles')->onUpdate('cascade'); // cycle demande
@@ -53,10 +52,9 @@ return new class extends Migration {
 
             // infos candidature
             $table->string('reference_candidature')->unique();
+            $table->enum('type_candidature', ['general', 'transfert'])->default('general');
             $table->string('status')->default('En cours'); // "En cours", "Validée", "Rejetée"
-            $table->foreignUlid('user_validate'); // si la candidature est validee
-            $table->foreignUlid('aded_by');
-            $table->foreignUlid('user_declined'); // si la candidature et rejetee
+            $table->foreignUlid('aded_by')->constrained('users')->onUpdate('cascade');
 
             $table->timestamps();
         });
