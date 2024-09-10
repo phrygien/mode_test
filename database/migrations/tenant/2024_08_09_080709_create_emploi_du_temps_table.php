@@ -12,7 +12,9 @@ return new class extends Migration {
     {
         Schema::create('emploi_du_temps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained('sections')->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreignId('niveau_id')->constrained('niveaux')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreignId('section_id')->constrained('sections')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('classroom_id');
             $table->foreignId('matiere_id')->constrained('matieres')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('enseignant_id')->constrained('enseignants')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date_cours'); // Date du cours

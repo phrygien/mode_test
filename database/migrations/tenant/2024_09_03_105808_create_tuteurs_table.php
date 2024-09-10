@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('telephone')->unique(); // Numéro de téléphone
             $table->string('email')->nullable()->unique(); // Adresse email
             $table->string('profession')->nullable(); // Profession du tuteur
+            $table->foreignId('eleve_id')->constrained('eleves')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('lien_parente', ['père', 'mère', 'oncle'])->default('père'); // Lien de parenté avec l'élève (père, mère, oncle, etc.)
             $table->timestamps();
         });

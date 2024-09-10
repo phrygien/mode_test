@@ -14,9 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->date('date_paiement');
             $table->string('numero_paiement');
-            $table->string('type_paiement')->default('espece');
-            $table->string('statut_paiement')->default('non payé'); // non payé, payé, annule
+            $table->enum('type_paiement', ['espece', 'cheque', 'virement banquaire'])->default('espece');
+            $table->enum('statut_paiement', ['not paid', 'paid'])->default('paid');
             $table->foreignId('inscription_id')->constrained('inscriptions')->onDelete('cascade')->onUpdate('cascade');
+            $table->decimal('montant_paye', 8, 2); // Montant payé
             $table->foreignUlid('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

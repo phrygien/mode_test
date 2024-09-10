@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('frais_inscriptions', function (Blueprint $table) {
+        Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('code')->unique();
-            $table->decimal('montant', 8, 2); // Montant des frais
-            $table->foreignId('cycle_id')->constrained('cycles')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nom'); // Ex: "6ème A", "Première S1"
+            $table->foreignId('section_id')->constrained('sections')->onUpdate('cascade')->onDelete('cascade'); // Relation avec les sections
+            $table->string('description')->nullable();
+            $table->integer('capacity');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('frais_inscriptions');
+        Schema::dropIfExists('classrooms');
     }
 };

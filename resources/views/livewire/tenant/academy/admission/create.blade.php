@@ -59,7 +59,11 @@ new class extends Component {
 }; ?>
 
 <div>
-    <x-header title="Novelle demande" separator />
+    <x-header title="Novelle demande" separator>
+        <x-slot:actions>
+            <x-button icon="o-arrow-left" class="btn-ghost" label="Back to list demandes" link="/academy/admissions" />
+        </x-slot:actions>
+    </x-header>
 
     <x-form wire:submit="save">
         {{--  Basic section  --}}
@@ -178,7 +182,7 @@ new class extends Component {
 
         <x-slot:actions>
             <x-button label="Annuler" link="/frais/admissions" />
-            <x-button label="Valider demande" icon="o-paper-airplane" spinner="save" type="submit"
+            <x-button label="Enregistrer la demande" icon="o-paper-airplane" spinner="save" type="submit"
                 class="btn-primary" />
         </x-slot:actions>
     </x-form>

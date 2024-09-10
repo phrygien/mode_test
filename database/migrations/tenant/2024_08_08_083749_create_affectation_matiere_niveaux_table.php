@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('niveau_id')->constrained('niveaux')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('trimestre_id');
             $table->integer('coefficient')->default(1);
+            $table->boolean('is_obligatoire')->default(true);
             $table->timestamps();
         });
     }

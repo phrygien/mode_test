@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
             $table->string('matricule')->unique(); // Matricule unique de l'élève
-            $table->string('photo')->nullable();
+            $table->string('photo')->nullable(); // URL de la photo de l'élève
             $table->string('nom'); // Nom de l'élève
             $table->string('prenom'); // Prénom de l'élève
             $table->date('date_naissance'); // Date de naissance
@@ -28,8 +28,7 @@ return new class extends Migration {
             $table->boolean('imported_from_file')->default(false);
             $table->boolean('admission_direct')->default(false);
             $table->enum('statut', ['inscrit', 'en attente', 'suspendu'])->default('inscrit'); // Statut de l'élève
-            $table->foreignId('tuteur_id'); // Référence à la table des tuteurs
-            $table->string('photo')->nullable(); // URL de la photo de l'élève
+            //$table->foreignId('tuteur_id')->nullable(); // Référence à la table des tuteurs
             $table->date('date_entree')->nullable(); // Date d'entrée dans l'établissement
             $table->date('date_sortie')->nullable(); // Date de sortie de l'élève
             $table->text('etat_sante')->nullable(); // Informations sur l'état de santé ou les allergies

@@ -10,15 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('inscriptions', function (Blueprint $table) {
+        Schema::create('student_classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('reference_inscription')->unique();
-            $table->date('date_inscription');
             $table->foreignId('eleve_id')->constrained('eleves')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('classroom_id')->constrained('classrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('annee_scolaire_id')->constrained('annee_scolaires')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('niveaux_id')->constrained('niveaux')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('cycle_id')->constrained('cycles')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('statut', ['en attente', 'confirmée', 'annulée', 'terminée'])->default('en attente'); // 'en attente', 'confirmée', 'annulée', 'terminée'
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('inscriptions');
+        Schema::dropIfExists('student_classrooms');
     }
 };

@@ -54,6 +54,7 @@ return new class extends Migration {
             $table->string('reference_candidature')->unique();
             $table->enum('type_candidature', ['general', 'transfert'])->default('general');
             $table->string('status')->default('En cours'); // "En cours", "Validée", "Rejetée"
+            $table->boolean('is_document_complete')->default(false); // Pour la verification des documents obligatoires
             $table->foreignUlid('aded_by')->constrained('users')->onUpdate('cascade');
 
             $table->timestamps();
